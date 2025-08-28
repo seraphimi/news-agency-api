@@ -1,10 +1,12 @@
 package com.newsagency.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "news")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
