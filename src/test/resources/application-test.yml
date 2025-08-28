@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: news-agency-api-test
+
+  # Test Database Configuration (H2 in-memory)
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+
+  # JPA Configuration for Testing
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: false
+    open-in-view: false
+
+  # H2 Console for debugging (disabled in tests)
+  h2:
+    console:
+      enabled: false
+
+# Logging Configuration for Tests
+logging:
+  level:
+    com.newsagency: INFO
+    org.springframework: WARN
+    org.hibernate: WARN
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# Test specific configuration
+news-agency:
+  notification:
+    enabled: false  # Disable notifications in tests
+  pagination:
+    default-page-size: 10
+    max-page-size: 50
